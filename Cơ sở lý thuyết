@@ -1,0 +1,30 @@
+Mã hóa ML-KEM
+
+
+
+
+I.Cơ sở lý thuyết:
+1 Khái niệm:
+
+
+    -ML-KEM , trước đây được gọi là CRYSTALS-Kyber trước khi được NIST chuẩn hóa, là một Cơ chế Mã hóa Khóa (KEM) hậu lượng tử dựa trên MLWE. KEM là một cơ chế mật mã bất đối xứng cho phép tạo ra và truyền tải bí mật một cách an toàn bằng cách sử dụng một cặp khóa riêng tư-công khai. Nó bao gồm ba bước:
+Tạo khóa : một khóa công khai và một khóa riêng tư được tạo ra;
+Mã hóa : một bí mật được tạo ra và mã hóa bằng khóa công khai để tạo ra bản mã;
+Giải mã : văn bản mã hóa được giải mã bằng khóa riêng để khôi phục lại bí mật gốc.
+
+
+2.Chi tiết các bước thực hiện
+
+-Sẽ có 2 tham số cố định là q=3329 (các hệ số trong đa thức nhỏ hơn 3329) ,n=256 (số phần tử trong đa thức), k :kích thước ma trận , n1 ,n2
+     Bên client 
+-Sử dụng thuật toán Kyber-PKE để chọn ma trận A kích thước k .k , đa thức s có hệ số khoảng [-n1,n1] ,đa thức e có hệ số khoảng [-n2,n2] 
+-Tính t = A.s +e
+-Public key là (A,t) private key là s
+ 
+     Bên server:
+-Nhận được (A,t) 
+-Chọn các đa thức r ,e1,e2 
+-Tính u= AT .r+ e1 và v =tT .r+ e2 + [q/2] .m
+-Output ciphertext c=(u,v)
+
+
